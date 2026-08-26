@@ -1,0 +1,10 @@
+clc; clear; close all;
+Rp = 1; Rs = 40; Wp = 0.5; Ws = 0.35;
+[n,Wn] = cheb1ord(Wp,Ws,Rp,Rs);
+[b,a] = cheby1(n,Rp,Wn,'high');
+figure; freqz(b,a); title('Frequency Response');
+figure; impz(b,a); title('Impulse Response');
+figure; grpdelay(b,a); title('Group Delay');
+figure; zplane(b,a); title('Pole-Zero Plot');
+fprintf('Filter Order = %d\n',n);
+fprintf('Cutoff Frequency = %.4f\n',Wn);
